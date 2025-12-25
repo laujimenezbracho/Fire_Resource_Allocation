@@ -79,3 +79,7 @@ Workload-sharing rules for large fires to ensure realistic multi-crew responses
 - Real-time dynamic reallocation as fires emerge
 - Multi-objective optimization (cost, environmental impact)
 - Climate change scenario modeling
+
+
+# Group Project:
+Jonah Walker, Alan Yang, Tala Abuzeid, Lau Jimenez
