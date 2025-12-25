@@ -15,9 +15,13 @@ Supply Side:
 - 33 BCWS fire stations across British Columbia
 - Each station can host multiple crew types
 - Per-station limits to prevent unrealistic crew concentration
+
+  
 Demand Side
 - 25 wildfire demand zones, generated via K-Means clustering
 - Zones represent fire-prone areas based on historical incidents
+
+  
 Crew Types
 - IA (Initial Attack)	Helicopter-based first responders
 - Rapattack	Helicopter-deployed rapid response crews
@@ -43,36 +47,35 @@ Government of British Columbia Open Data Portal
 
 # Clustering
 K-Means clustering (k = 25)
-Features: X_COORDINATE, Y_COORDINATE
+- Features: X_COORDINATE, Y_COORDINATE
 Output:
-25 fire demand zone centroids
-Average annual crew-day workload per zone
+- 25 fire demand zone centroids
+- Average annual crew-day workload per zone
 
 # Optimization Model
 Decision Variables
-Yᵢₖ: Number of crews of type k stationed at base i (integer)
-Xᵢⱼₖ: Fraction of zone j workload served by crew k from station i (continuous)
-Binary variables for aviation base eligibility and presence
-Total variables: 3,564
-(132 integer, 3,300 continuous, 132 binary)
+- Yᵢₖ: Number of crews of type k stationed at base i (integer)
+- Xᵢⱼₖ: Fraction of zone j workload served by crew k from station i (continuous)
+- Binary variables for aviation base eligibility and presence
+- Total variables: 3,564 (where 132 integer, 3,300 continuous, 132 binary)
 
 # Objective 
 Minimize total response time–weighted distance:
 Accounts for:
-Distance between stations and fire zones
-Zone-level wildfire workload
-Crew-specific travel speed
+- Distance between stations and fire zones
+- Zone-level wildfire workload
+- Crew-specific travel speed
 
 # Key Constraints
-100% demand satisfaction for all fire zones
-Crew capacity limits per station and per type
-Province-wide crew availability constraints
-Aviation basing limits (max 2 Parattack & 2 Rapattack bases)
-IA precedence rule (advanced crews require IA presence)
+- 100% demand satisfaction for all fire zones
+- Crew capacity limits per station and per type
+- Province-wide crew availability constraints
+- Aviation basing limits (max 2 Parattack & 2 Rapattack bases)
+- IA precedence rule (advanced crews require IA presence)
 Maximum response distance by crew type
 Workload-sharing rules for large fires to ensure realistic multi-crew responses
 
 # Extensions & Future Work
-Real-time dynamic reallocation as fires emerge
-Multi-objective optimization (cost, environmental impact)
-Climate change scenario modeling
+- Real-time dynamic reallocation as fires emerge
+- Multi-objective optimization (cost, environmental impact)
+- Climate change scenario modeling
